@@ -31,7 +31,7 @@ exclude:
 # Jekyll SEO Tag (Optional)
 # =========================
 
-logo: logo.png
+logo: /logo.png
 social:
   name: Phan Quang Khải 
   links:
