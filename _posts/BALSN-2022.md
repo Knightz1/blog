@@ -1,3 +1,11 @@
+---
+layout: post
+title: "[BALSN 2022]: Propaganda"
+categories: wasm, z3, ghidra script, gdb script
+toc: true
+---
+
+
 ## 1. Propaganda
 
 Đề cho 3 file: `launcher.js`, `run.py` và `propaganda.wasm`
