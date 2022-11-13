@@ -32,7 +32,7 @@ toc: true
   
   +Tới đây mình viết 1 script để đặt bp tại v11, v8, v6 để dump các giá trị đó ra 
   
-### Gdb script
+### Gdb script - find order
 ```python
 base=0x0000555555554000
 
@@ -83,7 +83,7 @@ order=[['0x13', '0xffffffe0', '0x5'], ['0xc', '0xffffffc8', '0x6'], ['0x1a', '-0
 ```
 
 -Trong quá trình làm mình thấy pseudo code của ghidra lại ra kết quả chính xác hơn IDA và cũng dễ viết script để lấy code:
-### Ghidra script
+### Ghidra script - dump decompiled code
 ```python
 
 from ghidra.app.decompiler import DecompInterface
