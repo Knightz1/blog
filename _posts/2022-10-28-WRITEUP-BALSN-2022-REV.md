@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[BALSN 2022]: Propaganda"
-categories: wasm, z3, ghidra script, gdb script
+categories: rev
 toc: true
 ---
 
