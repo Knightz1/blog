@@ -106,7 +106,7 @@ for i in range(len(func)):
 ```
 -Cuối cùng sửa syntax lại cho đúng rồi đem vào z3 thôi, ở đây mình lấy kết quả kế cuối rồi rồi tiếp tục trace ngược lại lên đầu:
 
-(Xem __propaganda.py)
+Xem [propaganda.py](https://github.com/Twi1ight12/CTF/blob/main/Balsn/2022/propaganda.py)
 
 Kết quả đối với số đầu tiên: 0x61797b4e534c4142 -> BALSN{ya
 
