@@ -32,7 +32,7 @@ toc: true
   
   +Tới đây mình viết 1 script để đặt bp tại v11, v8, v6 để dump các giá trị đó ra 
   
- ### Gdb script
+### Gdb script
 ```python
 base=0x0000555555554000
 
