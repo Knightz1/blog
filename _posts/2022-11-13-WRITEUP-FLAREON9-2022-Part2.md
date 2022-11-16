@@ -34,7 +34,6 @@ toc: true
 
 - Quan sát ta thấy đối với cái script bị extract thì bị lỗi còn cái file exe thì lại không (có lẽ là yếu tố code c của file exe ảnh hưởnng), suy nghĩ hoài mình ko biết cách pass làm sao nên mình quyết định làm việc trực tiếp trên file exe luôn, bỏ script js qua một bên.
 
-### Phân tích trên file exe 
 
 ### Dump kết quả cuối
 
