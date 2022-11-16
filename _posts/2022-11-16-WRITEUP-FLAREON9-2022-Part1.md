@@ -9,7 +9,7 @@ toc: true
 
 - Reverse C++ binary
 
-- Khi phân tích các C++ binary thì việc đầu tiên cần quan tâm là phân tích **vftable** 
+- Khi phân tích các C++ binary thì thứ nên quan tâm là phân tích ***vftable*** 
 
 
 
