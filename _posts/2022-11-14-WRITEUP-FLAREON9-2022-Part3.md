@@ -49,7 +49,7 @@ toc: true
 
 - Nếu để ý các giá trị ban đầu của mảng ta sẽ nhận thấy : 0x10001=65537 giống với số e trong thuật toán RSA
 
-- Dựa vào đó ta có thể phân tích lại các hàm: 
+- Dựa vào đó có thể phân tích lại các hàm: 
 
 ![image](https://user-images.githubusercontent.com/91442807/202232681-29e547e3-a2b5-47fb-b029-03ff4ff3cfd9.png)
 
@@ -81,6 +81,63 @@ print(decipher.decrypt(ct))
 - Kết quả: 
  
 ![image](https://user-images.githubusercontent.com/91442807/202233734-ab2d29b3-ff51-49ce-ad17-3ee41055e087.png)
+
+
+## 10 - Nur geträumt
+
+- Bài này chỉ hơi khó ở chỗ cài tool
+
+- Có thể tham khảo các bước cài đặt [ở đây](https://www.emaculation.com/doku.php/mini_vmac_setup)
+
+- Sau khi cài xong có thể kéo thể tệp image vào (lưu ý đổi tên image lại vì chương trình có vẻ ko nhận image có kí tự non-ascii)
+
+- Đề cho chương trình + disassembler luôn:
+
+![image](https://user-images.githubusercontent.com/91442807/202242988-a43eda3f-f4b5-49b6-94a9-168e5c7e136c.png)
+
+- Chạy thử: 
+
+![image](https://user-images.githubusercontent.com/91442807/202243158-42a2bb81-cbb2-478b-a806-a8c0713c59e3.png)
+
+- Dựa vào đó có thể đoán được là cần nhập đúng **password** để chương trình decode ra flag.
+
+- Mở disassembler lên thử thấy **flag bị encrypt**:
+
+![image](https://user-images.githubusercontent.com/91442807/202243784-b5581b15-a7cc-4c48-8628-e1a506262ff0.png)
+
+- Xem bằng hex view:
+
+![image](https://user-images.githubusercontent.com/91442807/202243982-dd82ae74-2ea7-4572-8e48-58f02afdd7a0.png)
+
+- Coi code thử thấy có một hàm khá quan trọng:
+
+![image](https://user-images.githubusercontent.com/91442807/202244310-c6572f82-771b-4266-8da8-dca90a577769.png)
+
+- Vừa tham khảo assembly [ở đây](http://wpage.unina.it/rcanonic/didattica/ce1/docs/68000.pdf) vừa đọc code, chương trình chỉ đơn giản là **xor** cái **encrypted flag** đó với **password** mình nhập
+
+- Dựa vào phần đuôi của flag **@flare-on.com** xor ngược lại có **du etwas Zeit** search thử trên mạng thì thấy đó là lời của một bài hát 
+
+- Lấy lời bài hát xor với phần còn lại có **Dann_singe_ich_ein...**
+
+```python
+known=b"@flare-on.com"
+
+kn=list(b'Hast du etwas Zeit f')+[252]+list(b"r mich ")
+enc_flag=[0xc, 0x0, 0x1d, 0x1a, 0x7f, 0x17, 0x1c, 0x4e, 0x2, 0x11,0x28, 0x8, 0x10, 0x48, 0x5, 0x0, 0x0, 0x1a, 0x7f, 0x2a, 0xf6, 0x17, 0x44, 0x32, 0xf, 0xfc, 0x1a, 0x60, 0x2c, 0x8, 0x10, 0x1c, 0x60, 0x2, 0x19, 0x41, 0x17, 0x11, 0x5a, 0xe, 0x1d, 0xe,0x39, 0xa,0x4]
+print(len(kn))
+
+for i in range(len(enc_flag)):
+    
+    print(chr(enc_flag[i]^kn[i%len(kn)]),end="")
+```
+
+- Thấy đó là lời thứ 2 của bài hát, mình copy nguyên câu rồi thêm **@flare-on.com** thay **ü** thành **u**
+
+-> Flag: **Dann_singe_ich_ein_Lied_fur_dich@flare-on.com**
+
+- P/S: bài nhảm vcl
+
+
 
 
 
