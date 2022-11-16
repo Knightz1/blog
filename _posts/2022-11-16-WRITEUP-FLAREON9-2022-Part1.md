@@ -25,5 +25,17 @@ toc: true
 
 - Sau đó kết quả encrypt sẽ được đi ***base64*** encode
 
+- Sau đó thực hiện kết nối http thông qua một số winAPI gì đó mà các bạn có thể thấy kết quả thông qua debug
+
+- Kết quả là chuỗi được lưu giống trong file pcap:
+
+![image](https://user-images.githubusercontent.com/91442807/202156504-e6140ef1-602d-40f8-b790-758eb3fd9e4e.png)
+
+- Tiếp tục debug ta biết được chỗ số 1 là ***"F09 + 1_số_random_gồm_5_chữ_số"*** và chỗ số 2 là kết quả sau khi ***base64*** encode ở trên
+
+-> Từ đó ta test thử xem dùng ***FO911950*** có thể decrypt ***ydN8BXq16RE=*** ra được ***ahoy*** giống phân tích ở trên hay không
+
+
+
 
 
