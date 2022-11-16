@@ -171,7 +171,17 @@ for i in range(len(data)):
     
     ![image](https://user-images.githubusercontent.com/91442807/202180104-1f5b1b23-6364-45f9-a17a-8205b156026e.png)
     
+    ![image](https://user-images.githubusercontent.com/91442807/202180900-d042777d-02f1-4ae3-be74-10b56a6f0221.png)
+
+    + Có vẻ phần đầu mình đã làm đúng
     
+    ![image](https://user-images.githubusercontent.com/91442807/202181310-14161a04-a771-4d50-a421-f9466c496e6f.png)
+
+    + Yay hàm RC4 thứ 2 đã decode flag bằng cách nào đó
+
+    ![image](https://user-images.githubusercontent.com/91442807/202181484-c2658753-bf48-4f35-acba-ef4b71ab1d64.png)
+
+
 
     
     
