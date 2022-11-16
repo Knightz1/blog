@@ -133,7 +133,7 @@ case.write(f1)
 
 - Code build dựa trên điều kiện của mỗi trường hợp:
 
-[print_flow.py](https://github.com/Twi1ight12/CTF/blob/main/flareon9/7-anode/print_flow.py)
+- [print_flow.py](https://github.com/Twi1ight12/CTF/blob/main/flareon9/7-anode/print_flow.py)
 
 - Kết quả: [flow.txt](https://github.com/Twi1ight12/CTF/blob/main/flareon9/7-anode/flow.txt)
 
