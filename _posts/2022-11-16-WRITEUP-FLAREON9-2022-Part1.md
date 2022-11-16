@@ -21,7 +21,7 @@ toc: true
 
 - Ta thấy đầu tiên ***http_process*** gọi hàm ***RC4*** 
 
-- Reverse hàm ***RC4*** ta thấy hàm dùng một key có format ***F09 + 1_số_random_gồm_5_chữ_số*** để encypt một string ***ahoy***
+- Reverse hàm ***RC4*** ta thấy hàm dùng một key có format ***"F09 + 1_số_random_gồm_5_chữ_số"*** để encypt một string ***"ahoy"***
 
 - Sau đó kết quả encrypt sẽ được đi ***base64*** encode
 
