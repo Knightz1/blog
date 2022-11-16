@@ -81,6 +81,38 @@ print(res)
 
 -> Cả 2 lần đều trả về source của 1 webpage
 
+- Tới đây mình lại không biết làm tiếp thế nào nhưng mình khá chắc là muốn tìm flag thì phải decode được đoạn **base64** trong file pcap.
+
+- Suy nghĩ thêm một lúc thì mình thấy đoạn base64 đó nằm trong phần **response** của file pcap nhưng tại sao lại trả về source web chứ không phải một chuỗi **base64** nào đó. Tới đây mình đoán có lẽ cái số random để nó trả về đoạn base64 lúc kết nối chắc chỉ có số ***11950***
+
+- Tới đây mình tiến hành patch cái số random lại thành ***11950*** trong lúc debug (patch giá trị EAX):
+
+![image](https://user-images.githubusercontent.com/91442807/202163680-d10d8e20-73ae-4ed4-8477-a6a2e0514e97.png)
+
+-Tiếp đó patch tiếp kết quả trả về của **WinHttpReadData** tại lần gọi thứ 2 thành đoạn ***base64*** trong file pcap bằng **IDApython**
+
+```python 
+import idaapi
+
+data=b'TdQdBRa1nxGU06dbB27E7SQ7TJ2+cd7zstLXRQcLbmh2nTvDm1p5IfT/Cu0JxShk6tHQBRWwPlo9zA1dISfslkLgGDs41WK12ibWIflqLE4Yq3OYIEnLNjwVHrjL2U4Lu3ms+HQc4nfMWXPgcOHb4fhokk93/AJd5GTuC5z+4YsmgRh1Z90yinLBKB+fmGUyagT6gon/KHmJdvAOQ8nAnl8K/0XG+8zYQbZRwgY6tHvvpfyn9OXCyuct5/cOi8KWgALvVHQWafrp8qB/JtT+t5zmnezQlp3zPL4sj2CJfcUTK5copbZCyHexVD4jJN+LezJEtrDXP1DJNg=='
+
+for i in range(len(data)):
+    idaapi.patch_byte(0x95EE40+i,data[i])    #thay đổi giá trị 0x95EE40 thành địa chỉ của "lpBuffer" trong lúc debug
+```
+
+![image](https://user-images.githubusercontent.com/91442807/202165171-7c3b037a-7ae7-4b54-a1a7-a23ba488067d.png)
+
+- Sau khi patch và debug thêm 1 lúc nữa ta thấy flag được load trong memory
+
+![image](https://user-images.githubusercontent.com/91442807/202167165-734a47a8-4586-4f13-ad1b-f7f30e25b322.png)
+
+
+
+
+
+
+
+
 
   
   
