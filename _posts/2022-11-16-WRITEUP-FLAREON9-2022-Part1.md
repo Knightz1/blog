@@ -15,5 +15,15 @@ toc: true
 
 - Sau khi phân tích một số hàm cùng với việc dùng plugin [findcrypt-yara](https://github.com/polymorf/findcrypt-yara) thì mình xác định chức năng của cơ bản của một số hàm như trên
 
+- Reverse hàm ***http_process***:
+
+![image](https://user-images.githubusercontent.com/91442807/202154238-acb4cf60-9cc8-46a1-9ef1-08dacb5c17d2.png)
+
+- Ta thấy đầu tiên ***http_process*** gọi hàm ***RC4*** 
+
+- Reverse hàm ***RC4*** ta thấy hàm dùng một key có format ***F09 + 1_số_random_gồm_5_chữ_số*** để encypt một string ***ahoy***
+
+- Sau đó kết quả encrypt sẽ được đi ***base64*** encode
+
 
 
