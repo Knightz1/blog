@@ -216,7 +216,7 @@ print(cond)
 
 - Đến đây thì đảo ngược thứ tự flow lại thôi 
 
-[solve.py]()
+- [solve.py]()
 
 ![image](https://user-images.githubusercontent.com/91442807/202204647-5ddedd69-31ac-47c1-9a5f-05484a69b79b.png)
 
