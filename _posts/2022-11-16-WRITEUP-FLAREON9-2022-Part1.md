@@ -107,8 +107,77 @@ for i in range(len(data)):
 ![image](https://user-images.githubusercontent.com/91442807/202167165-734a47a8-4586-4f13-ad1b-f7f30e25b322.png)
 
 
+## 6 - à la mode
 
+## Phân tích file .NET
 
+- Mở bằng [DnSpy](https://github.com/dnSpy/dnSpy):
+
+![1](https://user-images.githubusercontent.com/91442807/202173649-23d06ead-c67d-4a24-a428-5aeabb03bbcb.png)
+
+- Code khá đơn giản: thực hiện kết nối đến các **pipe** gì đó rồi đem vào **password** là tham số vào sau đó đọc 0x40 bytes từ **pipe** chuyển thành UTF-8 rồi trả về.
+
+- Vấn đề là ta không thấy được các hàm xử lí kết nối (server side) hay bất kì hàm nào khác hữu dụng.
+
+## Phân tích C code
+
+- Tới đây thì mình load vào IDA xem thử
+
+- Phân tích một hồi mình tới được đây:
+
+![image](https://user-images.githubusercontent.com/91442807/202175670-63112e2d-1c3c-4e32-8d3e-641990b4d783.png)
+
+- Hàm đầu tiên (**create_PEB**):
+
+    ![image](https://user-images.githubusercontent.com/91442807/202175891-7174b377-f230-4ac8-a097-450596107f59.png)
+    
+    + Sử dụng hàm **decode_string** để resolve lại đúng mấy cái tên hàm 
+   
+    + Có thể viết lại hàm để decode(khá đơn giản) hoặc debug để thấy
+    
+    + Kết quả sau khi decode mình đổi tên lại như trên
+
+- Hàm thứ 2 (**connect_and_write_file**):
+    
+    ![image](https://user-images.githubusercontent.com/91442807/202176900-37cc9874-b802-4498-8073-02966bf8ecdf.png)
+    
+    +Thực hiện kết nối PIPE gì đó (tương tự như phần .NET)
+    
+    +Hàm cần quan tâm là **Authorization**
+    
+- Hàm **Authorization**:
+
+    + Hàm này có thể dùng để check **password** của bên .NET
+
+    ![image](https://user-images.githubusercontent.com/91442807/202177399-8b08263f-2eac-4222-a6ad-ba585168b49d.png)
+    
+    + Phân tích ta thấy hàm thực hiện 2 lần RC4 
+    
+    + Tiến hành decrypt ở hàm RC4 thứ nhất:
+    
+    ```python
+    from Crypto.Cipher import ARC4
+
+    key=b'\x55\x8B\xEC\x83\xEC\x20\xEB\xFE'
+    data=b'>9Q\xfb\xa2\x11\xf7\xb9,'
+    print(ARC4.new(key).decrypt(data))
+    ```
+    
+    + Ta thu được: **b'MyV0ic3!\x00'**
+
+    + Nhưng thực hiện tương tự đối hàm RC4 thứ 2 lại không được (đã thử mọi cách)
+    
+    + Tới lúc này mình quyết định debug để coi nó là cái gì (dùng **rundll32.exe**)
+    
+    ![image](https://user-images.githubusercontent.com/91442807/202180104-1f5b1b23-6364-45f9-a17a-8205b156026e.png)
+    
+    
+
+    
+    
+ 
+ 
+    
 
 
 
