@@ -141,9 +141,9 @@ for i in range(len(data)):
     
     ![image](https://user-images.githubusercontent.com/91442807/202176900-37cc9874-b802-4498-8073-02966bf8ecdf.png)
     
-    +Thực hiện kết nối PIPE gì đó (tương tự như phần .NET)
+    + Thực hiện kết nối PIPE gì đó (tương tự như phần .NET)
     
-    +Hàm cần quan tâm là **Authorization**
+    + Hàm cần quan tâm là **Authorization**
     
 - Hàm **Authorization**:
 
