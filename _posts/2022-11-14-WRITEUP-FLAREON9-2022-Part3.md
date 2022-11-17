@@ -31,7 +31,7 @@ toc: true
 
 - Kết quả được lưu vào file **.Encrypted**
 
-### Encrypt buffer
+### Encrypt key+nonce
 
 ![image](https://user-images.githubusercontent.com/91442807/202232530-538409ae-c194-48a4-a799-511c99b1cff8.png)
 
@@ -41,7 +41,6 @@ toc: true
 
 - Trace ngược lại xem nó được tạo từ đâu
 
-### Encrypt key+nonce 
 
 ![image](https://user-images.githubusercontent.com/91442807/202225802-b93d41c0-b33a-47c4-b384-844f549b4f91.png)
 
