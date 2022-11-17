@@ -145,4 +145,6 @@ case.write(f1)
 ![image](https://user-images.githubusercontent.com/91442807/202204647-5ddedd69-31ac-47c1-9a5f-05484a69b79b.png)
 
 
+## 8 - backdoor
 
+(Phần deobfuscate không nhớ mình đem code vứt đi mà mình thì lười làm lại nên xin dời lại có gì viết sau :<<)
