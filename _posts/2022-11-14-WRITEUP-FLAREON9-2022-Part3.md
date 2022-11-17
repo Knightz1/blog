@@ -137,6 +137,94 @@ for i in range(len(enc_flag)):
 - P/S: bài nhảm vcl
 
 
+## 11 - The challenge that shall not be named
+
+- Bài này dùng **Pyinstaller** để chuyển từ file **python** -> **exe**
+
+- Dùng [pyinstxtractor.py](https://github.com/extremecoders-re/pyinstxtractor) để dump source (lưu ý ***chạy script bằng python 3.7 vì author khi sử dụng Pyinstaller dùng python 3.7***)
+
+- Sau khi dump source, decompile file **11.pyc** bằng [pycdc](https://github.com/zrax/pycdc)
+
+![image](https://user-images.githubusercontent.com/91442807/202346454-e77cd035-df57-4196-bf56-8751caec051e.png)
+
+- Có vẻ author dùng [Pyarmor](https://pyarmor.readthedocs.io/en/latest/usage.html) để bảo vệ nội dung file python.
+
+- Theo doc ta sắp xếp file như dưới và chạy thử:
+
+![image](https://user-images.githubusercontent.com/91442807/202347311-28ae20d3-b2dc-498b-9732-63965feadd2f.png)
+
+- Kết quả: 
+
+![image](https://user-images.githubusercontent.com/91442807/202347942-686a0424-11b0-4d88-b9bb-7dc8930cae3c.png)
+
+- Sau đó mình lấy file **crypt.pyc** trong source dump được thì chương trình lại yêu cầu thêm các thư viện khác và làm tiếp tục tương tự
+
+![image](https://user-images.githubusercontent.com/91442807/202348740-f217407c-f2fa-4aed-8f32-d08d2e788c90.png)
+
+- Tới đây thì chương trình file **11.pyc** chạy bình thường
+
+- Decompile thử file **crypt.pyc** thì thấy cũng bị encrypt bằng **pyarmor**:
+
+![image](https://user-images.githubusercontent.com/91442807/202349827-5eccc3c7-f4f0-4d3c-963e-52ad5c47fcdc.png)
+
+-> Có nghĩa là file **crypt.pyc** này không phải là file thư viện gốc của python là file author tạo ra rồi encrypt cùng lúc với pyarmor
+
+- Tham khảo [write-up](https://devilinside.me/blogs/unpacking-pyarmor) mình biết là có thể ghi đè code lên file thư viện để chương trình in ra thứ mình cần
+
+- Tạo thử một file **crypt.py** rồi chạy thử:
+
+![image](https://user-images.githubusercontent.com/91442807/202350050-43bd9ef1-5bc3-49a4-82d3-ae259190ac21.png)
+
+-> Do **pyarmor** decrypt code trong lúc chương trình chạy nên ta có thể lợi dụng điều này để lúc chương trình gọi code của **crypt.py** ta có thể biết được phần nào nội dung của file
+
+-> Thư viện thiếu hàm **ARC4**, tới đây có vẻ là đang đi đúng hướng vì flareon kì này dùng RC4 cipher khá nhiều.
+
+- Tạo hàm RC4:
+
+```python
+def ARC4():
+    return
+```
+![image](https://user-images.githubusercontent.com/91442807/202350688-fdf8744e-4799-4efa-8fc6-f3f5557231e7.png)
+
+- Hàm này lấy 1 tham số -> thêm vào sẵn tiện in ra luôn :))
+
+```python
+def ARC4(x):
+    print(x)
+    return 
+```
+
+![image](https://user-images.githubusercontent.com/91442807/202350911-003d8b71-488f-458a-af5b-450e236e51d1.png)
+
+ - Ban đầu mình thử tạo hàm **encrypt** tương tự thì lại không được, xem lại source của **crypt.pyc** gốc thì mình tạo hàm ARC4 thành 1 class thì được, từ đó theo lỗi tương tự như trên để viết lại hàm **encrypt**
+
+```python
+class ARC4:
+    def __init__(self,key):
+        print(key)
+        return
+    def encrypt(a,b):
+        print(a)
+        print(b)
+        return
+```
+
+-> Kết quả: 
+
+![image](https://user-images.githubusercontent.com/91442807/202351816-a6f90caa-fe57-49ca-8ea4-9abb327d3a6b.png)
+
+  
+ 
+
+
+
+
+
+
+
+
+
 
 
 
